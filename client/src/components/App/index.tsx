@@ -1,19 +1,18 @@
-import * as React from 'react';
-import { PureComponent } from 'react';
-import Header from '../Header';
-import PatientList from '../PatientList';
-import CreatePatient from '../CreatePatient';
-import { Switch, Route } from 'react-router-dom';
+import * as React from "react";
+import { MainContent } from "../main";
+import { ShopAppBar } from "../shop-app-bar";
+import { FAB } from "../floating-action-button";
+import { CssBaseline } from "@material-ui/core";
 
-const App = () =>
-  <div>
-    <Header />
-    <div>
-      <Switch>
-        <Route exact={true} path="/" component={PatientList} />
-        <Route exact={true} path="/create" component={CreatePatient} />
-      </Switch>
-    </div>
-  </div>;
-
-export default App;
+export class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <CssBaseline />
+        <ShopAppBar />
+        <MainContent />
+        <FAB />
+      </div>
+    );
+  }
+}

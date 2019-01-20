@@ -1,23 +1,31 @@
 import * as express from "express";
 import * as cors from "cors";
+import * as session from "express-session";
 import { ApolloServer } from "apollo-server-express";
 require("dotenv").config();
-import { users, products } from "./schema";
+import { typeDefs, resolvers } from "./schema";
 
 const app = express();
-const usersServer = new ApolloServer({
-  typeDefs: users.typeDefs,
-  resolvers: users.resolvers
-});
-const productsServer = new ApolloServer({
-  typeDefs: products.typeDefs,
-  resolvers: products.resolvers
+
+const shopServer = new ApolloServer({
+  typeDefs: typeDefs,
+  resolvers: resolvers,
+  context: ({ req }) => {
+    return { user: req.session.user };
+  }
 });
 
 app.use(cors());
+app.use(
+  session({
+    secret: "product-crawlr",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  })
+);
 
-usersServer.applyMiddleware({ app, path: "/users" });
-productsServer.applyMiddleware({ app, path: "/products" });
+shopServer.applyMiddleware({ app, path: "/shop" });
 
 const PORT = 9000;
 

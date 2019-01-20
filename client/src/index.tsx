@@ -1,27 +1,20 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import {
-  ApolloProvider,
-  createNetworkInterface,
-  ApolloClient
-} from 'react-apollo';
-import { BrowserRouter } from 'react-router-dom';
-
-const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:9000/graphql'
-});
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from "apollo-client";
+import { HttpLink } from "apollo-link-http";
+import { ApolloProvider } from "react-apollo";
+import { App } from "./components/App";
+import "./index.css";
 
 const client = new ApolloClient({
-          networkInterface
+  link: new HttpLink({ uri: "http://localhost:9000/shop" }),
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(
-  <BrowserRouter>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </BrowserRouter>,
-  document.getElementById('root')
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById("root")
 );

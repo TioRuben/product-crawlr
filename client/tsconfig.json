@@ -11,17 +11,10 @@
     "rootDir": "src",
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "typeRoots": ["./node_modules/@types"]
   },
-  "exclude": [
-    "node_modules",
-    "build"
-  ],
-  "types": [
-    "typePatches"
-  ]
+  "exclude": ["node_modules", "build"],
+  "types": ["typePatches"]
 }

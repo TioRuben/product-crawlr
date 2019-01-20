@@ -17,7 +17,8 @@ export const singlePageCrawler = async (page: string): Promise<Product[]> => {
             .text()
             .replace("€", "")
         ),
-        vendorId: parseInt(linkSplitted[linkSplitted.length - 1])
+        vendorId: parseInt(linkSplitted[linkSplitted.length - 1]),
+        imageUrl: $(".product-image .img-responsive", element).attr("src")
       });
     });
     return products;
