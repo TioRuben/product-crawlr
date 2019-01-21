@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
-  Button,
   createStyles,
   Theme,
   WithStyles,
   withStyles,
-  Tooltip
+  Tooltip,
+  Fab
 } from "@material-ui/core";
 import HeartIcon from "@material-ui/icons/Favorite";
 
@@ -13,8 +13,9 @@ const floatingActionButtonStyles = (theme: Theme) =>
   createStyles({
     fab: {
       position: "fixed",
-      bottom: theme.spacing.unit * 2,
-      right: theme.spacing.unit * 2
+      bottom: theme.spacing.unit * 4,
+      right: theme.spacing.unit * 4,
+      zIndex: 99
     }
   });
 
@@ -26,9 +27,9 @@ class FABInner extends React.Component<FloatingActionButtonProps> {
     const { classes } = this.props;
     return (
       <Tooltip title="Open my wishlist">
-        <Button variant="fab" className={classes.fab} color="secondary">
+        <Fab color="secondary" className={classes.fab}>
           <HeartIcon fontSize="large" />
-        </Button>
+        </Fab>
       </Tooltip>
     );
   }
