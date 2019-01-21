@@ -6,14 +6,20 @@ import { CssBaseline } from "@material-ui/core";
 import { Order } from "../../models";
 
 interface AppProps {}
+interface AppState {
+  wishList: number[];
+  order: Order;
+  productCount: number;
+}
 
-export class App extends React.Component<
-  AppProps,
-  { wishList: number[]; order: Order }
-> {
+export class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
-    this.state = { wishList: [], order: { orderBy: "price", asc: true } };
+    this.state = {
+      wishList: [],
+      order: { orderBy: "price", asc: true },
+      productCount: 0
+    };
   }
 
   handleAddToWishList = (productId: number) => {
@@ -26,16 +32,30 @@ export class App extends React.Component<
     });
   };
 
+  handleSetOrder = (order: Order) => {
+    this.setState({ order });
+  };
+
+  handleProductCount = (productCount: number) => {
+    this.setState({ productCount });
+  };
+
   render() {
     const { wishList, order } = this.state;
+
     return (
       <div>
         <CssBaseline />
-        <ShopAppBar />
+        <ShopAppBar
+          order={order}
+          setOrder={this.handleSetOrder}
+          productCount={this.state.productCount}
+        />
         <MainContent
           addToWishList={this.handleAddToWishList}
           wishList={this.state.wishList}
           order={order}
+          setProductCount={this.handleProductCount}
         />
         <FAB />
       </div>

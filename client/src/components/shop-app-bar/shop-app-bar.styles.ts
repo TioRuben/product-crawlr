@@ -6,14 +6,16 @@ export const shopAppBarStyles = (theme: Theme) =>
     grow: {
       flexGrow: 1
     },
-    title: {
+    productsCount: {
+      flexGrow: 1,
       display: "none",
-      width: "100%",
       [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing.unit,
-        width: "auto",
         display: "block"
       }
+    },
+    title: {
+      width: "auto",
+      display: "block"
     },
     search: {
       position: "relative",
@@ -28,6 +30,9 @@ export const shopAppBarStyles = (theme: Theme) =>
       [theme.breakpoints.up("sm")]: {
         marginLeft: theme.spacing.unit
       }
+    },
+    userIcon: {
+      color: theme.palette.primary.contrastText
     },
     searchIcon: {
       width: theme.spacing.unit * 9,

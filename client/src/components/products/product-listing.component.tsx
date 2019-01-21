@@ -22,11 +22,14 @@ interface ProductListingProps {
   addToWishList: (productId: number) => void;
   wishList: number[];
   order: Order;
+  setProductCount: (count: number) => void;
 }
 
 export class ProductListing extends React.Component<ProductListingProps> {
   render() {
-    const { addToWishList, wishList, order } = this.props;
+    const { addToWishList, wishList, order, setProductCount } = this.props;
+    // tslint:disable-next-line:no-console
+    console.log(order);
     return (
       <Grid
         container={true}

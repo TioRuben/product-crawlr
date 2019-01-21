@@ -1,46 +1,21 @@
 import * as React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import { WithStyles, withStyles, InputBase } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import { shopAppBarStyles } from "./shop-app-bar.styles";
-import { OrderMenu } from "./order-menu.component";
+import { Order } from "../../models";
+import { TopBar } from "./top-bar.component";
+import { BottomBar } from "./bottom-bar.component";
 
-interface ShopAppBarProps extends WithStyles<typeof shopAppBarStyles> {}
+interface ShopAppBarProps {
+  order: Order;
+  productCount: number;
+  setOrder: (order: Order) => void;
+}
 
-class ShopAppBarInner extends React.Component<ShopAppBarProps> {
+export class ShopAppBar extends React.Component<ShopAppBarProps> {
   render() {
-    const { classes } = this.props;
     return (
-      <AppBar position="sticky">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap={true}
-            className={classes.title}
-          >
-            My Favourite Appliances
-          </Typography>
-          <div className={classes.grow} />
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-            />
-          </div>
-          <OrderMenu />
-        </Toolbar>
-      </AppBar>
+      <>
+        <TopBar />
+        <BottomBar {...this.props} />
+      </>
     );
   }
 }
-
-export const ShopAppBar = withStyles(shopAppBarStyles)(ShopAppBarInner);

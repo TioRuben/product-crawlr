@@ -13,7 +13,7 @@ export const getAllProducts = async (): Promise<Product[]> =>
   );
 
 const selectAllProducts = async (): Promise<Product[]> =>
-  DB.get("SELECT * FROM products").then(products =>
+  DB.get("SELECT * FROM products ORDER BY price ASC").then(products =>
     products.map(product => ({
       ...product,
       vendorId: product.vendor_id,
