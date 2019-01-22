@@ -6,8 +6,8 @@ A simple product crawler and wishlist
 
 ### Postgres
 
-Create a database and user with privileges over it. Edit `.env` file with user, password and database name
-once set up, run `db.sql` script to create the necessary tables.
+Create a database and user with privileges over it. Edit `server/.env` file with user, password and database name.
+Once set up, run `db.sql` script to create the necessary tables.
 
 ### Node Server
 
