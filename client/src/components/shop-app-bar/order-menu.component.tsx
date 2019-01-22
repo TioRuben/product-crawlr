@@ -22,7 +22,7 @@ interface OrderMenuProps extends WithStyles<typeof orderMenuStyles> {
 }
 
 class OrderMenuInner extends React.Component<OrderMenuProps> {
-  getOrderIcon = (order: Order, item: "price" | "title") =>
+  getOrderIcon = (order: Order, item: "price" | "description") =>
     order.orderBy === item ? (
       order.asc ? (
         <AscendingIcon />
@@ -33,7 +33,7 @@ class OrderMenuInner extends React.Component<OrderMenuProps> {
       <OrderIcon />
     );
 
-  onOrderHandler = (item: "price" | "title") => () => {
+  onOrderHandler = (item: "price" | "description") => () => {
     this.props.setOrder({
       orderBy: item,
       asc: this.props.order.orderBy === item ? !this.props.order.asc : true
@@ -47,8 +47,8 @@ class OrderMenuInner extends React.Component<OrderMenuProps> {
         <Button size="small" onClick={this.onOrderHandler("price")}>
           {this.getOrderIcon(order, "price")} Price
         </Button>
-        <Button size="small" onClick={this.onOrderHandler("title")}>
-          {this.getOrderIcon(order, "title")} Title
+        <Button size="small" onClick={this.onOrderHandler("description")}>
+          {this.getOrderIcon(order, "description")} Title
         </Button>
       </div>
     );

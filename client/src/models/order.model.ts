@@ -1,4 +1,4 @@
 export interface Order {
-  orderBy: "price" | "title";
+  orderBy: "price" | "description";
   asc: boolean;
 }

@@ -15,11 +15,12 @@ import {
 } from "@material-ui/core";
 import HeartIcon from "@material-ui/icons/Favorite";
 import { productItemStyles } from "./product-item.styles";
+import { Product } from "../../models";
 
 interface ProductItemProps extends WithStyles<typeof productItemStyles> {
   product: any;
   inWishList: boolean;
-  addToWishList: (productId: number) => void;
+  addToWishList: (product: Product) => void;
 }
 
 class ProductItemInner extends React.Component<
@@ -35,8 +36,8 @@ class ProductItemInner extends React.Component<
     this.setState({ enters });
   };
 
-  handleAddToWishList = (productId: number) => () => {
-    this.props.addToWishList(productId);
+  handleAddToWishList = (product: Product) => () => {
+    this.props.addToWishList(product);
   };
 
   render() {
@@ -59,7 +60,15 @@ class ProductItemInner extends React.Component<
             <Tooltip
               title={inWishList ? "Remove from Wishlist" : "Add to Wishlist"}
             >
-              <IconButton onClick={this.handleAddToWishList(product.vendorId)}>
+              <IconButton
+                onClick={this.handleAddToWishList({
+                  description: product.description,
+                  imageUrl: product.imageUrl,
+                  link: product.link,
+                  price: product.price,
+                  vendorId: product.vendorId
+                })}
+              >
                 <HeartIcon
                   color={inWishList ? "secondary" : "disabled"}
                   classes={{ root: classes.icon }}

@@ -5,8 +5,8 @@ import { BottomBar } from "./bottom-bar.component";
 
 interface ShopAppBarProps {
   order: Order;
-  productCount: number;
   setOrder: (order: Order) => void;
+  setTextFilter: (text: string) => void;
 }
 
 export class ShopAppBar extends React.Component<ShopAppBarProps> {

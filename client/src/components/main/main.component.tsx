@@ -1,24 +1,24 @@
 import * as React from "react";
 import { ProductListing } from "../products";
-import { Order } from "../../models";
+import { Order, Product } from "../../models";
 
 interface MainContentProps {
-  addToWishList: (productId: number) => void;
-  wishList: number[];
+  addToWishList: (product: Product) => void;
+  wishList: Product[];
   order: Order;
-  setProductCount: (count: number) => void;
+  textFilter: string;
 }
 
 export class MainContent extends React.Component<MainContentProps> {
   render() {
-    const { addToWishList, wishList, order, setProductCount } = this.props;
+    const { addToWishList, wishList, order, textFilter } = this.props;
     return (
       <main style={{ padding: "1em" }}>
         <ProductListing
           addToWishList={addToWishList}
           wishList={wishList}
           order={order}
-          setProductCount={setProductCount}
+          textFilter={textFilter}
         />
       </main>
     );

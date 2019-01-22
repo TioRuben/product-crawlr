@@ -3,13 +3,45 @@ import * as format from "pg-format";
 import { Product } from "../models/product";
 import { startCrawl } from "../crawler/start-crawl";
 
-export const getAllProducts = async (): Promise<Product[]> =>
+export const getProducts = async (
+  filter: string,
+  orderBy: string,
+  asc: boolean,
+  limit: number,
+  offset: number
+): Promise<Product[]> =>
   startCrawl().then(products =>
     products.length > 0
       ? createAndUpdateMultipleProducts(products).then(update_timestamp =>
-          removeOldProducts(update_timestamp).then(s => selectAllProducts())
+          removeOldProducts(update_timestamp).then(s =>
+            selectFilteredProducts(filter, orderBy, asc, limit, offset)
+          )
         )
-      : selectAllProducts()
+      : selectFilteredProducts(filter, orderBy, asc, limit, offset)
+  );
+
+const selectFilteredProducts = async (
+  filter: string,
+  orderBy: string,
+  asc: boolean,
+  limit: number,
+  offset: number
+): Promise<Product[]> =>
+  DB.get(
+    format(
+      "SELECT * FROM products WHERE description ILIKE %L ORDER BY %I %s LIMIT %s OFFSET %s",
+      `%${filter || ""}%`,
+      orderBy,
+      asc ? "ASC" : "DESC",
+      limit,
+      offset
+    )
+  ).then(products =>
+    products.map(product => ({
+      ...product,
+      vendorId: product.vendor_id,
+      imageUrl: product.image_url
+    }))
   );
 
 const selectAllProducts = async (): Promise<Product[]> =>
