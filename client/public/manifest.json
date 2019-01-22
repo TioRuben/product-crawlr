@@ -1,0 +1,8 @@
+{
+  "short_name": "My Favourite Appliances",
+  "name": "My Favourite Appliances",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
