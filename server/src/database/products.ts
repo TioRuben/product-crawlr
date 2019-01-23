@@ -1,5 +1,5 @@
 import * as DB from "./db";
-import * as format from "pg-format";
+import format from "pg-format";
 import { Product } from "../models/product";
 import { startCrawl } from "../crawler/start-crawl";
 
