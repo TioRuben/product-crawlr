@@ -1,5 +1,5 @@
 import * as DB from "./db";
-import * as format from "pg-format";
+import format from "pg-format";
 import { Product } from "../models/product";
 
 export const getWishList = async (user: number): Promise<Product[]> =>

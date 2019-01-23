@@ -1,2 +1,2 @@
-export { Order } from "./order.model";
-export { Product } from "./product.model";
+export * from "./order.model";
+export * from "./product.model";

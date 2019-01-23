@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as InfiniteScroll from "react-infinite-scroller";
+import InfiniteScroll from "react-infinite-scroller";
 import { Grid, LinearProgress, Typography, Button } from "@material-ui/core";
 import { ProductItem } from "./product-item.component";
 import { Product } from "../../models";
