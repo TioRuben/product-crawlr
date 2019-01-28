@@ -4,7 +4,7 @@ import session from "express-session";
 import { ApolloServer } from "apollo-server-express";
 require("dotenv").config();
 import { typeDefs, resolvers } from "./schema";
-import { userLogin } from "./user-middleware";
+import { userLogin, userRegister, userLogout } from "./user-middleware";
 
 const app = express();
 
@@ -26,11 +26,14 @@ app.use(
   })
 );
 
+app.use("/user/login", express.json(), userLogin);
+app.use("/user/register", express.json(), userRegister);
+app.use("/user/logout", express.json(), userLogout);
+
 shopServer.applyMiddleware({ app, path: "/shop" });
-app.use("/user/login", userLogin);
 
 const PORT = 9000;
 
 app.listen(PORT, () => {
-  console.log(`Product Crawler GraphQL server running on port ${PORT}.`);
+  console.log(`Product Crawler server running on port ${PORT}.`);
 });

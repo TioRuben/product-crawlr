@@ -13,3 +13,9 @@ CREATE TABLE wishlist
     user_id integer NOT NULL,
     vendor_id integer NOT NULL
 );
+CREATE TABLE users(
+   id SERIAL PRIMARY KEY,
+   name VARCHAR NOT NULL,
+   pw_hash VARCHAR NOT NULL
+);
+CREATE EXTENSION pgcrypto;
