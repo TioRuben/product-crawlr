@@ -4,6 +4,7 @@ import * as session from "express-session";
 import { ApolloServer } from "apollo-server-express";
 require("dotenv").config();
 import { typeDefs, resolvers } from "./schema";
+import { userLogin } from "./user-middleware";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(
 );
 
 shopServer.applyMiddleware({ app, path: "/shop" });
+app.use("/user/login", userLogin);
 
 const PORT = 9000;
 
