@@ -1,5 +1,3 @@
--- Table: products
-
 CREATE TABLE products
 (
     vendor_id bigint NOT NULL,
@@ -9,18 +7,9 @@ CREATE TABLE products
     updated timestamp with time zone,
     image_url text COLLATE pg_catalog."default",
     CONSTRAINT products_pkey PRIMARY KEY (vendor_id)
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
+);
 CREATE TABLE wishlist
 (
     user_id integer NOT NULL,
     vendor_id integer NOT NULL
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
+);

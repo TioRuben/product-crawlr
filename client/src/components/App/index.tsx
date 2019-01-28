@@ -4,12 +4,13 @@ import { ShopAppBar } from "../shop-app-bar";
 import { FAB } from "../wish-list";
 import { CssBaseline } from "@material-ui/core";
 import { Order, Product } from "../../models";
-import { graphql } from "react-apollo";
+import { graphql, compose, DataProps } from "react-apollo";
 import gql from "graphql-tag";
 
 interface AppProps {
   data: any;
 }
+
 interface AppState {
   wishList: Product[];
   order: Order;
@@ -105,4 +106,4 @@ class AppInner extends React.Component<AppProps, AppState> {
   }
 }
 
-export const App = graphql(getWishListQuery)(AppInner);
+export const App = compose(graphql(getWishListQuery)) (AppInner);

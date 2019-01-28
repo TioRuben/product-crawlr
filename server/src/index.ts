@@ -1,6 +1,6 @@
-import * as express from "express";
-import * as cors from "cors";
-import * as session from "express-session";
+import express from "express";
+import cors from "cors";
+import session from "express-session";
 import { ApolloServer } from "apollo-server-express";
 require("dotenv").config();
 import { typeDefs, resolvers } from "./schema";

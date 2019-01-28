@@ -1,20 +1,42 @@
 {
   "compilerOptions": {
     "outDir": "build/dist",
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom", "esnext.asynciterable"],
+    "lib": [
+      "es6",
+      "dom",
+      "esnext.asynciterable"
+    ],
     "sourceMap": true,
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "rootDir": "src",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
-  "exclude": ["node_modules", "build"],
-  "types": ["typePatches"]
+  "exclude": [
+    "node_modules",
+    "build"
+  ],
+  "types": [
+    "typePatches"
+  ],
+  "include": [
+    "src"
+  ]
 }
